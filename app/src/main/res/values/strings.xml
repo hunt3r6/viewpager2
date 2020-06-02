@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyViewPager2</string>
+
+    <string-array name="data_slide">
+        <item>@drawable/blade</item>
+        <item>@drawable/destroyer</item>
+        <item>@drawable/force</item>
+        <item>@drawable/kungfu</item>
+    </string-array>
+</resources>
