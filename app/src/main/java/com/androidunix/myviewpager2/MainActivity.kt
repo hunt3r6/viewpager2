@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         val compositePageTransformer = CompositePageTransformer()
         compositePageTransformer.addTransformer(MarginPageTransformer(40))
         compositePageTransformer.addTransformer { page, position ->
-            val r: Float = 1 - Math.abs(position)
-            page.scaleY = 0.85f + r * 0.15f
+            val r: Float = 1 - abs(position)
+            page.scaleY = 1f + r * 0.86f
         }
 
         viewPagerImage.setPageTransformer(compositePageTransformer)
