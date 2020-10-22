@@ -1,5 +1,6 @@
 package com.androidunix.myviewpager2
 
+import android.content.res.TypedArray
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -11,16 +12,18 @@ import kotlin.math.abs
 class MainActivity : AppCompatActivity() {
 
     private var listImage = ArrayList<SliderItem>()
+    private lateinit var dataPhoto: TypedArray
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        listImage.add(SliderItem(R.drawable.blade))
-        listImage.add(SliderItem(R.drawable.destroyer))
-        listImage.add(SliderItem(R.drawable.force))
-        listImage.add(SliderItem(R.drawable.kungfu))
+        dataPhoto = resources.obtainTypedArray(R.array.data_slide)
+        for (position in 0..3) {
+            val image = SliderItem(dataPhoto.getResourceId(position, -1))
+            listImage.add(image)
+        }
 
         val sliderAdapter = SliderAdapter(listImage, viewPagerImage)
 
@@ -34,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         compositePageTransformer.addTransformer(MarginPageTransformer(40))
         compositePageTransformer.addTransformer { page, position ->
             val r: Float = 1 - abs(position)
-            page.scaleY = 1f + r * 0.86f
+            page.scaleY = 0.5f + r * 0.5f
         }
 
         viewPagerImage.setPageTransformer(compositePageTransformer)
